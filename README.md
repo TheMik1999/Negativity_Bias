@@ -28,10 +28,11 @@ Pkg.add(["Plots","LinearAlgebra",  "DifferentialEquations", "NLsolve","LaTeXStri
 ## Parameters
 
 - **N**  - Number of agents
-- **q**  - Size of the group of influence
-- **$\varepsilon_{\uparrow}$**  - Probability of an unadopted agent switching to adopted a state (if not unanimity in $q$-panel)
-- **$\varepsilon_{\downarrow}$**  - Probability of an adopted agent switching to an unadopted state
-(if not unanimity in $q$-panel)
+- **$p$** - Probability of independence
+- **$q_+$**  - The group size required for a shift from negative to positive
+- **$q_-$**  - The group size required for a shift from positive to negative
+- **$\beta_{+}$**  - Probability that a negative agent conforms and changes to a positive opinion.
+- **$\beta_{-}$**  - Probability that a positive agent conforms and changes to a negative opinion.
 
 
 ## Model Description
@@ -40,15 +41,12 @@ The model is implemented on a complete graph, meaning that the network structure
 
 ### Figure
 
-A schematic diagram of the model parameters (**q**,**$\varepsilon_{\uparrow}$**,**$\varepsilon_{\downarrow}$**):
+A schematic diagram of the model parameters (**$p$**,**$q_{+}$**,**$q_{-}$**,**$\beta_{+}$**,**$\beta_{-}$**):
 
 ![Figure](model_scheme.png)
 
 **Caption:**
-The diagram illustrates possible scenarios where a target agent (inside the circle) may change its state. Examples are provided for **q = 4**. Black (white) agents represent adopted (unadopted) agents, while gray agents indicate agents in an arbitrary state. 
-- (a), (b): The target agent's state changes independently of its initial state if the **q-panel** is unanimous.
-- (c): If the **q-panel** is not unanimous, an adopted agent switches to an unadopted state with probability **$\varepsilon_{\downarrow}$**.
-- (d): If the **q-panel** is not unanimous, an unadopted agent adopts the state with probability **$\varepsilon_{\uparrow}$**.
+Illustration of the extended model, where red denotes negative opinions, green positive opinions, and target agents are shown in circles: (a) A negative agent may, with probability **$p$**, act independently and switch to positive, or, with probability **$1-p$**, be influenced by the **$q$**-panel, but only if it is unanimous; otherwise, it retains its state. When exposed to a unanimous positive **$q$**-panel, a negative agent conforms with probability **$\beta_+$** and resists with the complementary probability. (b) The process is analogous for a positive agent, but the influence group sizes in (a) and (b) differ: **$q_+$** is the group size required for a shift from negative to positive, and **$q_-$** the size required for the reverse. For the baseline model **$\beta_+=\beta_-=1$**.
 
 ---
 
@@ -58,15 +56,15 @@ The diagram illustrates possible scenarios where a target agent (inside the circ
 
 
 #### `trajectory_simulation.jl` [View code](trajectory_simulation.jl)
-Generates time trajectories for given **q**, **$\varepsilon_{\uparrow}$** and **$\varepsilon_{\downarrow}$**  values. Modified for multiple initial conditions.
+<!-- Generates time trajectories for given **q**, **$\varepsilon_{\uparrow}$** and **$\varepsilon_{\downarrow}$**  values. Modified for multiple initial conditions. -->
 
 #### `exitprobability_simulation.jl` [View code](exitprobability_simulation.jl)
-Calculates exit probabilities from simulations.
+<!-- Calculates exit probabilities from simulations. -->
 
 ### Analytical
 
 #### `trajectory_analytical_plus_stab_point.jl` [View code](trajectory_analytical_plus_stab_point.jl)
-Generates analytical time trajectories for given **q**, **$\varepsilon_{\uparrow}$** and **$\varepsilon_{\downarrow}$** values, with stable and unstable points included.
+<!-- Generates analytical time trajectories for given **q**, **$\varepsilon_{\uparrow}$** and **$\varepsilon_{\downarrow}$** values, with stable and unstable points included. -->
 
 
 
@@ -76,7 +74,7 @@ Generates analytical time trajectories for given **q**, **$\varepsilon_{\uparrow
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/TheMik1999/Modeling-biases-in-the-generalized-nonlinear-q-voter-model.git
+   git clone https://github.com/TheMik1999/Negativity_Bias.git
    cd Modeling-biases-in-the-generalized-nonlinear-q-voter-model
    ```
 2. Ensure you have **Julia v1.9.2** installed.
