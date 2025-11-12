@@ -14,13 +14,21 @@ using Plots
 using LinearAlgebra
 using NLsolve
 using DifferentialEquations
-```
+````
 
 To install missing packages, use:
 
 ```julia
 using Pkg
-Pkg.add(["Plots","LinearAlgebra",  "DifferentialEquations", "NLsolve","LaTeXStrings"])
+Pkg.add(["Plots","LinearAlgebra","DifferentialEquations","NLsolve"])
+```
+
+**Optional package:**
+
+* `LaTeXStrings` — only needed for `example_analytical_plot.jl` to render axis labels and titles in LaTeX for better plot aesthetics. If you do not require LaTeX labels, this package can be skipped.
+
+```julia
+Pkg.add("LaTeXStrings")  # optional, only for LaTeX-formatted plot labels
 ```
 
 **Note:** The `DataFrames`,`DelimitedFiles` and `CSV` packages are not required to run the code unless you wish to save data to CSV files. The relevant code for saving data is marked with `# save data to csv file` and is commented out by default.
@@ -59,7 +67,7 @@ Illustration of the extended model, where red denotes negative opinions, green p
 Generates time trajectories for given **$p$**, **$q_{+}$**, **$q_{-}$**, **$\beta_{+}$**, **$\beta_{-}$**  values. Modified for multiple initial conditions.
 
 #### `stable_simulation.jl` [View code](stable_simulation.jl)
-<!-- Calculates exit probabilities from simulations. -->
+Performs Monte Carlo simulations of the system to compute stationary concentrations of positive opinion $c$ for different probabilities $p$, and overlays analytical curves for comparison.
 
 ### Analytical
 

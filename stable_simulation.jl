@@ -2,8 +2,8 @@ using DifferentialEquations
 using Plots
 using NLsolve
 using DelimitedFiles
-
 include("function_plot_analitical.jl")
+
 let 
 function update_opinions(N, N_p, q_p, q_m, beta_plus, beta_minus, p)
     
