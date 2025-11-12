@@ -56,17 +56,18 @@ Illustration of the extended model, where red denotes negative opinions, green p
 
 
 #### `trajectory_simulation.jl` [View code](trajectory_simulation.jl)
-<!-- Generates time trajectories for given **q**, **$\varepsilon_{\uparrow}$** and **$\varepsilon_{\downarrow}$**  values. Modified for multiple initial conditions. -->
+Generates time trajectories for given **$p$**, **$q_{+}$**, **$q_{-}$**, **$\beta_{+}$**, **$\beta_{-}$**  values. Modified for multiple initial conditions.
 
-#### `exitprobability_simulation.jl` [View code](exitprobability_simulation.jl)
+#### `stable_simulation.jl` [View code](stable_simulation.jl)
 <!-- Calculates exit probabilities from simulations. -->
 
 ### Analytical
 
-#### `trajectory_analytical_plus_stab_point.jl` [View code](trajectory_analytical_plus_stab_point.jl)
-<!-- Generates analytical time trajectories for given **q**, **$\varepsilon_{\uparrow}$** and **$\varepsilon_{\downarrow}$** values, with stable and unstable points included. -->
+#### `function_plot_analitical.jl` [View code](function_plot_analitical.jl)
+Generates analytical curves of positive opinion concentration $c$ as a function of independent behavior probability $p$ for given $q_{+}$, $q_{-}$, $\beta_{+}$, $\beta_{-}$ values. Stable and unstable segments are highlighted, and critical points are optionally marked.
 
-
+#### `example_analytical_plot.jl` [View code](example_analytical_plot.jl)
+Generates example analytical curves of positive opinion concentration $c$ versus independent behavior probability $p$ for given $q_{+}$, $q_{-}$, $\beta_{+}$, $\beta_{-}$ values. Highlights stable and unstable segments with color coding, and includes dummy lines in the legend to indicate different parameter regimes.
 
 ---
 

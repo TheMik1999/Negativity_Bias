@@ -3,6 +3,7 @@ using Plots
 using NLsolve
 using DelimitedFiles
 
+include("function_plot_analitical.jl")
 let 
 function update_opinions(N, N_p, q_p, q_m, beta_plus, beta_minus, p)
     
@@ -16,8 +17,8 @@ function update_opinions(N, N_p, q_p, q_m, beta_plus, beta_minus, p)
         end
     else #antyconformity
         if opinion
-            if rand() < beta_plus
-                neighbor = rand(q_p)
+            if rand() < beta_minus
+                neighbor = rand(q_m)
                 if all(neighbor .< 1 - N_p/N)
                     return -1
                 else
@@ -27,8 +28,8 @@ function update_opinions(N, N_p, q_p, q_m, beta_plus, beta_minus, p)
                 return 0
             end
         else
-            if rand() < beta_minus
-                neighbor = rand(q_m)
+            if rand() < beta_plus
+                neighbor = rand(q_p)
                 if all(neighbor .< N_p/N)
                     return 1
                 else
@@ -42,7 +43,7 @@ function update_opinions(N, N_p, q_p, q_m, beta_plus, beta_minus, p)
 end
 
 function p_c_fun(c,q_plus,q_minus,beta_plus,beta_minus)
-    L=beta_minus .*(1 .- c) .*c .^q_minus .- beta_plus .*c .*(1 .-c).^q_plus
+    L=beta_plus .*(1 .- c) .*c .^q_plus .- beta_minus .*c .*(1 .-c).^q_minus
     K=2 .*c .-1
     return L./(L.+K)
     
@@ -55,11 +56,11 @@ MCS = 2*10^3
 q_plus  = 2
 beta_plus = 1.0
 q_minus = 1
-beta_minus = 0.25
+beta_minus = 0.5
 #--------------------------------------------------
 
 # probability of independent behavior
-p_list = 0.0:0.01:0.1
+p_list = 0.0:0.01:0.2
 p_list = collect(p_list)
 #--------------------------------------------------
 
@@ -67,19 +68,13 @@ p_list = collect(p_list)
 c_0_list=[1.0,0.0]
 #--------------------------------------------------
 
-# value span for analitical plot
-delta=0.000001
-c_0_span_to_05 = delta:delta:0.5-delta
-c_0_span_to_05=collect(c_0_span_to_05)
-c_0_span_from_05 = 0.5+0.05:delta:1
-c_0_span_from_05=collect(c_0_span_from_05)
-#--------------------------------------------------
-
 plot1=Plots.plot()
-p_to_05=p_c_fun(c_0_span_to_05,q_plus,q_minus,beta_plus,beta_minus)
-p_form_05=p_c_fun(c_0_span_from_05,q_plus,q_minus,beta_plus,beta_minus)
-plot1=Plots.plot!(p_to_05,c_0_span_to_05, label="",linewidth=2,color="black")
-plot1=Plots.plot!(p_form_05,c_0_span_from_05, label="",linewidth=2,color="red")
+
+# analytical curves
+color = :blue
+plot_curve(plot1, color, q_minus, q_plus, beta_minus, beta_plus)
+add_if_crite(plot1, color, q_minus, q_plus, beta_minus, beta_plus)
+# 
 
 # sym_stab
 c_stab=zeros(length(p_list))

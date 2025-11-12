@@ -12,8 +12,8 @@ function update_opinions(N, N_p, q_p, q_m, beta_plus, beta_minus, p)
         end
     else #antyconformity
         if opinion
-            if rand() < beta_plus
-                neighbor = rand(q_p)
+            if rand() < beta_minus
+                neighbor = rand(q_m)
                 if all(neighbor .< 1 - N_p/N)
                     return -1
                 else
@@ -23,8 +23,8 @@ function update_opinions(N, N_p, q_p, q_m, beta_plus, beta_minus, p)
                 return 0
             end
         else
-            if rand() < beta_minus
-                neighbor = rand(q_m)
+            if rand() < beta_plus
+                neighbor = rand(q_p)
                 if all(neighbor .< N_p/N)
                     return 1
                 else
