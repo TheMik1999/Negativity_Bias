@@ -2,8 +2,8 @@ using DifferentialEquations
 using Plots
 using NLsolve
 using LaTeXStrings
-
 include("function_plot_analitical.jl")
+
 let 
 
     # Parameter lists

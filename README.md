@@ -104,6 +104,10 @@ Generates example analytical curves of positive opinion concentration $c$ versus
 
 This project is licensed under the MIT License.
 
+## Acknowledgments
+
+This research was partially funded by the National Science Centre, Poland, Grant 2019/35/B/HS6/02530.
+
 ## Author
 
 - **TheMik1999** - [GitHub Profile](https://github.com/TheMik1999)
