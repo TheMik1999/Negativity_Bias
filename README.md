@@ -3,7 +3,7 @@
 
 This repository contains the code used to generate results for the publication *"Decision-Making under Negativity Bias: Double Hysteresis in the Opinion-Dependent q-Voter Model"*.
 
-[Arxiv NOT YET](https://arxiv.org)
+[Arxiv](https://arxiv.org/abs/2511.17837)
 
 ## Requirements
 
